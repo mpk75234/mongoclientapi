@@ -14,6 +14,12 @@ router.get('/books', function(req, res, next) {
     res.json(dox);
   });
 });
+router.post('/books', function(req, res, next){
+  err === null ? console.log('posting to /api/books'): console.error(err);
+  db.collection('books').insertOne(req.body, (err, book)=>{
+    err ? console.error(err) : res.send('book saved to mongodb');
+  })
+})
 });
 
 module.exports = router;
